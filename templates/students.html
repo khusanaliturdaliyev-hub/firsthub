@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Talabaler ro'yxati</title>
+</head>
+<body>
+    <h1>Talabalar ro'yxati</h1>
+    <a href="/">Bosh sahifa</a>
+    <hr>
+    <ol>
+        {% for talaba in talabalar %}
+            <a href="/students/{{ talaba.id }}/">
+                <li>{{ talaba.ism }}</li>
+            </a>
+        {% endfor %}
+    </ol>
+</body>
+</html>
