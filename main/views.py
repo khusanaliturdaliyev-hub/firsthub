@@ -33,14 +33,15 @@ def student_details_view(request, student_id):
 
 def mualliflar_view(request):
     mualliflar = Muallif.objects.all()
-    contex = {
+    context = {
         'mualliflar' : mualliflar,
     }
-    return render(request, "mualliflar.html", context=contex)
+    return render(request, "mualliflar.html", context)
 
 def muallif_view(request, muallif_id):
     muallif = Muallif.objects.get(id=muallif_id)
-    contex = {
+
+    context = {
         'muallif': muallif,
     }
-    return render(request, "muallif.html", context=contex)
+    return render(request, "muallif.html", context)
