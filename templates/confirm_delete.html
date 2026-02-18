@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="uz">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{{ title }}</title></head>
+<body>
+  <h2>{{ title }}</h2>
+  <p>Rostdan ham <b>{{ object_name }}</b> ni o‘chirmoqchimisiz?</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Ha, o‘chirish</button>
+    {% if cancel_url == "records" %}
+      <a href="{% url 'records' %}">Bekor qilish</a>
+    {% else %}
+      <a href="{% url cancel_url cancel_id %}">Bekor qilish</a>
+    {% endif %}
+  </form>
+</body>
+</html>

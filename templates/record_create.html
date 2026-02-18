@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="uz">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Record qo‘shish</title></head>
+<body>
+  <h2>Record qo‘shish</h2>
+  <a href="{% url 'records' %}">Recordlar</a> | <a href="{% url 'home' %}">Bosh sahifa</a>
+  <hr>
+
+  {% if errors %}
+    <ul>
+      {% for e in errors %}<li>{{ e }}</li>{% endfor %}
+    </ul>
+    <hr>
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+
+    <p>
+      Talaba:
+      <select name="talaba_id">
+        <option value="">-- tanlang --</option>
+        {% for t in talabalar %}
+          <option value="{{ t.id }}" {% if data.talaba_id == t.id|stringformat:"s" %}selected{% endif %}>
+            {{ t.ism }}
+          </option>
+        {% endfor %}
+      </select>
+    </p>
+
+    <p>
+      Kitob:
+      <select name="kitob_id">
+        <option value="">-- tanlang --</option>
+        {% for k in kitoblar %}
+          <option value="{{ k.id }}" {% if data.kitob_id == k.id|stringformat:"s" %}selected{% endif %}>
+            {{ k.nom }}
+          </option>
+        {% endfor %}
+      </select>
+    </p>
+
+    <p>
+      Kutubxonachi:
+      <select name="kutubxonachi_id">
+        <option value="">-- tanlang --</option>
+        {% for x in kutubxonachilar %}
+          <option value="{{ x.id }}" {% if data.kutubxonachi_id == x.id|stringformat:"s" %}selected{% endif %}>
+            {{ x.ism }}
+          </option>
+        {% endfor %}
+      </select>
+    </p>
+
+    <p>Qaytargan sana (ixtiyoriy): <input type="date" name="qaytargan_sana" value="{{ data.qaytargan_sana }}"></p>
+
+    <button type="submit">Saqlash</button>
+  </form>
+</body>
+</html>

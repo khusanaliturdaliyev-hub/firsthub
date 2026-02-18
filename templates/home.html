@@ -1,23 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Kutubxona | Bosh sahifa</title>
-</head>
+<!doctype html>
+<html lang="uz">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Home</title></head>
 <body>
-    <h1>Bosh sahifa</h1>
-    <hr>
-    <p>Codial Kutubxonasiga xush kelibsiz!</p>
-    <ul>
-        <li>
-            <a href="/students/">Talablar ro'yxati</a>
-        </li>
-        <li>
-            <a href="/mualliflar/ ">Mualliflar ro'yxati</a>
-        </li>
-        <li>
-            <a href="#">Kitobla ro'yxati</a>
-        </li>
-    </ul>
+  <h1>Kutubxona</h1>
+  <hr>
+
+  <h3>Ko‘rish</h3>
+  <ul>
+    <li><a href="{% url 'students' %}">Talabalar</a></li>
+    <li><a href="{% url 'mualliflar' %}">Mualliflar</a></li>
+    <li><a href="{% url 'records' %}">Recordlar</a></li>
+  </ul>
+
+  <h3>Qo‘shish</h3>
+  <ul>
+    <li><a href="{% url 'talaba_create' %}">Talaba qo‘shish</a></li>
+    <li><a href="{% url 'muallif_create' %}">Muallif qo‘shish</a></li>
+    <li><a href="{% url 'kitob_create' %}">Kitob qo‘shish</a></li>
+    <li><a href="{% url 'record_create' %}">Record qo‘shish</a></li>
+    <li><a href="{% url 'kutubxonachi_create' %}">Kutubxonachi qo‘shish</a></li>
+  </ul>
 </body>
 </html>

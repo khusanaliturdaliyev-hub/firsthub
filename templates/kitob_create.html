@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="uz">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Kitob qo‘shish</title></head>
+<body>
+  <h2>Kitob qo‘shish</h2>
+  <a href="{% url 'home' %}">Bosh sahifa</a>
+  <hr>
+
+  {% if errors %}
+    <ul>
+      {% for e in errors %}<li>{{ e }}</li>{% endfor %}
+    </ul>
+    <hr>
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+    <p>Nom: <input name="nom" value="{{ data.nom }}"></p>
+    <p>Janr: <input name="janr" value="{{ data.janr }}"></p>
+    <p>Sahifa: <input type="number" name="sahifa" min="1" value="{{ data.sahifa }}"></p>
+
+    <p>
+      Muallif:
+      <select name="muallif_id">
+        <option value="">-- tanlang --</option>
+        {% for m in mualliflar %}
+          <option value="{{ m.id }}" {% if data.muallif_id == m.id|stringformat:"s" %}selected{% endif %}>
+            {{ m.ism }}
+          </option>
+        {% endfor %}
+      </select>
+    </p>
+
+    <button type="submit">Saqlash</button>
+  </form>
+</body>
+</html>

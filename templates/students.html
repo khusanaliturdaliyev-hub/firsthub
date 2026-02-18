@@ -8,6 +8,16 @@
     <h1>Talabalar ro'yxati</h1>
     <a href="/">Bosh sahifa</a>
     <hr>
+    <form method="get">
+  <label>Tartiblash:</label>
+  <select name="sort" onchange="this.form.submit()">
+    <option value="ism"  {% if sort =="ism" %}selected{% endif %}>Ism (A-Z)</option>
+    <option value="-ism" {% if sort =="-ism" %}selected{% endif %}>Ism (Z-A)</option>
+    <option value="kurs" {% if sort =="kurs" %}selected{% endif %}>Kurs (o‘sish)</option>
+    <option value="-kurs" {% if sort =="-kurs" %}selected{% endif %}>Kurs (kamayish)</option>
+  </select>
+  <noscript><button type="submit">OK</button></noscript>
+</form>
     <ol>
         {% for talaba in talabalar %}
             <a href="/students/{{ talaba.id }}/">

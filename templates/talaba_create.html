@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="uz">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Talaba qo‘shish</title></head>
+<body>
+  <h2>Talaba qo‘shish</h2>
+  <a href="{% url 'home' %}">Bosh sahifa</a>
+  <hr>
+
+  {% if errors %}
+    <ul>
+      {% for e in errors %}<li>{{ e }}</li>{% endfor %}
+    </ul>
+    <hr>
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+    <p>
+      Ism: <input name="ism" value="{{ data.ism }}">
+    </p>
+    <p>
+      Guruh: <input name="guruh" value="{{ data.guruh }}">
+    </p>
+    <p>
+      Kurs: <input name="kurs" type="number" min="1" value="{{ data.kurs }}">
+    </p>
+    <p>
+      Kitob soni: <input name="kitob_soni" type="number" min="0" value="{{ data.kitob_soni }}">
+    </p>
+    <button type="submit">Saqlash</button>
+  </form>
+</body>
+</html>

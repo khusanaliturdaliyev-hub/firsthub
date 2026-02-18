@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="uz">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Muallif qo‘shish</title></head>
+<body>
+  <h2>Muallif qo‘shish</h2>
+  <a href="{% url 'mualliflar' %}">Mualliflar</a> | <a href="{% url 'home' %}">Bosh sahifa</a>
+  <hr>
+
+  {% if errors %}
+    <ul>
+      {% for e in errors %}<li>{{ e }}</li>{% endfor %}
+    </ul>
+    <hr>
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+
+    <p>Ism: <input name="ism" value="{{ data.ism }}"></p>
+
+    <p>
+      Jins:
+      <select name="jins">
+        <option value="">-- tanlang --</option>
+        {% for val, label in jins_choices %}
+          <option value="{{ val }}" {% if data.jins == val %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
+      </select>
+    </p>
+
+    <p>Tug‘ilgan sana: <input type="date" name="t_sana" value="{{ data.t_sana }}"></p>
+    <p>Kitob soni: <input type="number" name="kitob_soni" min="0" value="{{ data.kitob_soni }}"></p>
+
+    <p>
+      Tirik:
+      <input type="checkbox" name="tirik" {% if data.tirik %}checked{% endif %}>
+    </p>
+
+    <button type="submit">Saqlash</button>
+  </form>
+</body>
+</html>

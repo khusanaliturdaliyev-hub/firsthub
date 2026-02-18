@@ -1,19 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Mualliflar ro'yxati</title>
-</head>
+<!doctype html>
+<html lang="uz">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Mualliflar</title></head>
 <body>
-    <h1>Mualliflar ro'yxati</h1>
-    <a href="/">Bosh sahifa</a>
-    <hr>
-    {% for muallif in mualliflar %}
-        <p>{{ forloop.counter }}
-            <a href="/mualliflar/{{ muallif.id }}">
-                 {{ muallif.ism }}
-            </a>
-        </p>
+  <h1>Mualliflar</h1>
+  <a href="{% url 'home' %}">Bosh sahifa</a>
+  <hr>
+
+  <form method="get">
+    <input type="text" name="q" placeholder="Muallif ismi bo‘yicha qidirish..." value="{{ q }}">
+    <button type="submit">Qidirish</button>
+    {% if q %}<a href="{% url 'mualliflar' %}">Tozalash</a>{% endif %}
+  </form>
+
+  <hr>
+
+  <ol>
+    {% for m in mualliflar %}
+      <li>
+        <a href="{% url 'muallif_detail' m.id %}">{{ m.ism }}</a>
+        | <a href="{% url 'muallif_delete' m.id %}">O‘chirish</a>
+      </li>
+    {% empty %}
+      <li>Muallif topilmadi</li>
     {% endfor %}
+  </ol>
 </body>
 </html>
